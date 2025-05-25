@@ -1,0 +1,114 @@
+# myMath.py
+#
+# Can a computer understand mathematics?
+# This is an attempt to see if it can...
+#
+class Arithmetic:
+    def __init__(
+        self,
+        N = {'Natural Numbers': {1,2,3,5,5,6,7,8,9}},
+        N0 = {'Whole Numbers': {0,1,2,3,5,5,6,7,8,9}},
+        Z = {'Integers': {-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9}},
+        additionSymbol = '+',
+        subtractionSymbol = '-',
+        multiplicationSymbol = '*',
+        divisionSymbol = '/'
+        ):
+
+
+        self.N = N
+        self.N0 = N0
+        self.Z = Z
+        self.additionSymbol = additionSymbol
+        self.subtractionSymbol = subtractionSymbol
+        self.multiplicationSymbol = multiplicationSymbol
+        self.divisionSymbol = divisionSymbol
+
+    def isNatural(self, x):
+        if x in self.N['Natural Numbers']:
+            return True
+        elif isinstance(x, int) and x > 0:
+            self.N['Natural Numbers'].add(x)
+            return True
+        return False
+
+    def isWhole(self, x):
+        if x in self.N['Whole Numbers']:
+            return True
+        elif isinstance(x, int) and x > -1:
+            self.N['Whole Numbers'].add(x)
+            return True
+        return False
+
+    def isInteger(self, x): # Just use int class?
+        if x in self.N['Integers']:
+            return True
+        elif isinstance(x, int):
+            self.N['Integers'].add(x)
+            return True
+        return False
+
+    def printAll(self):
+        print("N:  ", self.N)
+        print("N0: ", self.N0)
+        print("Z:  ", self.Z)
+        print("Operation symbols:")
+        print("   Addition:       ", self.additionSymbol)
+        print("   Subtraction:    ", self.subtractionSymbol)
+        print("   Multiplication: ", self.multiplicationSymbol)
+        print("   Division:       ", self.divisionSymbol)
+
+    def getAll(self):
+        return {"N": self.N, "N0": self.N0, "Z": self.Z, "additionSymbol": self.additionSymbol,
+                "subtractionSymbol": self.subtractionSymbol,
+                "multiplicationSymbol": self.multiplicationSymbol,
+                "divisionSymbol": self.divisionSymbol}
+
+    def simpleAdd(x, y):
+        return x + y
+
+    def myAdd(self, x, y):
+        print("START: myAdd")
+        if isinstance(x, float):
+            xFloat = x
+            x = int(x)
+            print("Converted x: {}  to int(x): {}.".format(xFloat, x))
+        elif isinstance(y, float):
+            yFloat = y
+            y = int(y)
+            print("Converted y: {}  to int(y): {}.".format(yFloat, y))
+
+        xArr = []
+        yArr = []
+
+        if x < 0:
+            xP = x * -1
+        else:
+            xP = x
+        
+        if y < 0:
+            yP = y * -1
+        else:
+            yP= y
+
+        print("x & xP: ", x, xP)
+        print("y & yP: ", y, yP)
+        
+        for i in range(0, xP):
+            xArr.append(1)
+
+        for i in range(0, yP):
+            yArr.append(1)
+
+        print(xArr)
+        print(yArr)
+
+        xLen = len(xArr)
+        yLen = len(yArr)
+
+        if x < 0:
+            xLen = xLen * -1
+        if y < 0:
+            yLen = yLen * -1
+        print("END: myAdd")
+        return xLen + yLen
