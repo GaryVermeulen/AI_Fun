@@ -3,9 +3,8 @@
 # Can a computer understand mathematics?
 # This is an attempt to see if it can...
 #
-class Arithmetic:
-    def __init__(
-        self,
+
+"""
         N = {'Natural Numbers': {1,2,3,5,5,6,7,8,9}},
         N0 = {'Whole Numbers': {0,1,2,3,5,5,6,7,8,9}},
         Z = {'Integers': {-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9}},
@@ -13,8 +12,19 @@ class Arithmetic:
         subtractionSymbol = '-',
         multiplicationSymbol = '*',
         divisionSymbol = '/'
-        ):
+"""
 
+class Arithmetic:
+    def __init__(
+        self,
+        N = None,
+        N0 = None,
+        Z = None,
+        additionSymbol = None,
+        subtractionSymbol = None,
+        multiplicationSymbol = None,
+        divisionSymbol = None
+        ):
 
         self.N = N
         self.N0 = N0
@@ -24,29 +34,69 @@ class Arithmetic:
         self.multiplicationSymbol = multiplicationSymbol
         self.divisionSymbol = divisionSymbol
 
+    def setN(self, N):
+        self.N = N
+        return
+
+    def setN0(self, N0):
+        self.N0 = N0
+        return
+
+    def setZ(self, Z):
+        self.Z = Z
+        return
+
+    def setAdditionSymbol(self, aS):
+        self.additionSymbol = aS
+        return
+
+    def setSubtractionSymbol(self, sS):
+        self.subtractionSymbol = sS
+        return
+
+    def setMultiplicationSymbol(self, mS):
+        self.multiplicationSymbol = mS
+        return
+
+    def setDivisionSymbol(self, dS):
+        self.divisionSymbol = dS
+        return
+
     def isNatural(self, x):
-        if x in self.N['Natural Numbers']:
+        print(type(self.N))
+        
+        if x in self.N:
             return True
         elif isinstance(x, int) and x > 0:
-            self.N['Natural Numbers'].add(x)
+            self.N.add(x)
             return True
         return False
 
     def isWhole(self, x):
-        if x in self.N['Whole Numbers']:
+        if x in self.N0:
             return True
         elif isinstance(x, int) and x > -1:
-            self.N['Whole Numbers'].add(x)
+            self.N0.add(x)
             return True
         return False
 
     def isInteger(self, x): # Just use int class?
-        if x in self.N['Integers']:
+        if x in self.Z:
             return True
         elif isinstance(x, int):
-            self.N['Integers'].add(x)
+            self.Z.add(x)
             return True
         return False
+
+    def whatIsX(self, x):
+        xIs = []
+        if self.isInteger(x):
+            xIs.append("INTEGER")
+        if self.isWhole(x):
+            xIs.append("WHOLE")
+        if self.isNatural(x):
+            xIs.append("NATURAL")
+        return xIs
 
     def printAll(self):
         print("N:  ", self.N)
@@ -64,7 +114,7 @@ class Arithmetic:
                 "multiplicationSymbol": self.multiplicationSymbol,
                 "divisionSymbol": self.divisionSymbol}
 
-    def simpleAdd(x, y):
+    def simpleAdd(self, x, y):
         return x + y
 
     def myAdd(self, x, y):
