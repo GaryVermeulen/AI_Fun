@@ -17,7 +17,7 @@
 class Arithmetic:
     def __init__(
         self,
-        N = None,
+        #N = None,
         N0 = None,
         Z = None,
         additionSymbol = None,
@@ -26,7 +26,7 @@ class Arithmetic:
         divisionSymbol = None
         ):
 
-        self.N = N
+        #self.N = N
         self.N0 = N0
         self.Z = Z
         self.additionSymbol = additionSymbol
@@ -34,9 +34,9 @@ class Arithmetic:
         self.multiplicationSymbol = multiplicationSymbol
         self.divisionSymbol = divisionSymbol
 
-    def setN(self, N):
-        self.N = N
-        return
+    #def setN(self, N):
+    #    self.N = N
+    #    return
 
     def setN0(self, N0):
         self.N0 = N0
@@ -62,6 +62,8 @@ class Arithmetic:
         self.divisionSymbol = dS
         return
 
+    # Old way, not efficient, need to use a rule
+    """
     def isNatural(self, x):
         print(type(self.N))
         
@@ -70,6 +72,19 @@ class Arithmetic:
         elif isinstance(x, int) and x > 0:
             self.N.add(x)
             return True
+        return False
+    """
+    def isNatural(self, x):
+        # Cheesy, but simple, no complex test (yet)
+        if isinstance(x, int):
+            if x > 0:
+                return True
+        elif isinstance(x, float):
+            return False
+        elif isinstance(x, str):
+            if x.isnumeric():
+                if eval(x) > 0:
+                    return True
         return False
 
     def isWhole(self, x):
@@ -99,7 +114,7 @@ class Arithmetic:
         return xIs
 
     def printAll(self):
-        print("N:  ", self.N)
+        #print("N:  ", self.N)
         print("N0: ", self.N0)
         print("Z:  ", self.Z)
         print("Operation symbols:")
@@ -109,7 +124,7 @@ class Arithmetic:
         print("   Division:       ", self.divisionSymbol)
 
     def getAll(self):
-        return {"N": self.N, "N0": self.N0, "Z": self.Z, "additionSymbol": self.additionSymbol,
+        return {"N0": self.N0, "Z": self.Z, "additionSymbol": self.additionSymbol,
                 "subtractionSymbol": self.subtractionSymbol,
                 "multiplicationSymbol": self.multiplicationSymbol,
                 "divisionSymbol": self.divisionSymbol}
@@ -117,6 +132,7 @@ class Arithmetic:
     def simpleAdd(self, x, y):
         return x + y
 
+    # Hokey 
     def myAdd(self, x, y):
         print("START: myAdd")
         if isinstance(x, float):
